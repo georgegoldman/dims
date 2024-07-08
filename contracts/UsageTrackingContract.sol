@@ -15,6 +15,7 @@ contract UsageTrackingContract {
     }
 
     function useIdea(uint256 ideaId, uint256 equity) public {
+        require(equity > 0, "Equity must be greater than 0");
         ideaUsage[ideaId][msg.sender] += equity;
         ideaEquity[ideaId] += equity;
         emit IdeaUsed(ideaId, msg.sender, equity);

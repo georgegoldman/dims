@@ -14,6 +14,11 @@ contract IdeaContract {
 
     event IdeaSubmitted(uint256 id, address creator, string description, uint256 timestamp);
 
+    modifier onlyCreator(uint256 ideaId) {
+        require(ideas[ideaId].creator  == msg.sender, "Not the idea creator");
+        _;
+    }
+
     function submitIdea(string memory description) public {
         ideaCount++;
         ideas[ideaCount] = Idea(ideaCount, msg.sender, description, block.timestamp);
