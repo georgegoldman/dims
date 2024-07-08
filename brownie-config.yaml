@@ -1,0 +1,17 @@
+dependencies:
+  - OpenZeppelin/openzeppelin-contracts@4.0.0
+compiler:
+  solc:
+    remappings:
+      - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.0.0'
+
+
+networks:
+  default: development
+  development:
+    cmd_settings:
+      port: 8545
+    gas_price: 50 gwei
+    host: http://127.0.0.1
+    port: 7545
+    fork: false

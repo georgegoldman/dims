@@ -10,12 +10,14 @@ contract UsageTrackingContract {
 
     event IdeaUsed(uint256 ideaId, address user, uint256 equity);
 
-    constructor(address ideaContractAddress) {
-        ideaContract = IdeaContract(ideaContractAddress);
+    constructor() {
+        ideaContract = new IdeaContract();
     }
 
     function useIdea(uint256 ideaId, uint256 equity) public {
         require(equity > 0, "Equity must be greater than 0");
+        require(ideaContract.getIdea(ideaId).id == ideaId, "Idea dose not exist");
+
         ideaUsage[ideaId][msg.sender] += equity;
         ideaEquity[ideaId] += equity;
         emit IdeaUsed(ideaId, msg.sender, equity);

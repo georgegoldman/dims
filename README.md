@@ -28,11 +28,9 @@ Security is a primary concern in the development of this project. The following 
 ## Technology Stack
 - __Blockchain__: Ethereum
 - __Smart Contracts__: Solidity
-- __Backend__: FastAPI (Python)
-- __Database__: SQLite (for development), PostgreSQL (for production)
-- __Authentication__: OAuth2 with JWT tokens
-- __Rate Limiting__: Redis and `fastapi-limiter`
-- __Testing__: `pytest`, `httpx`, `pytest-asyncio`
+- __Backend__: Python
+- __Database__: SQLite
+- __Testing__: `pytest`
 
 
 ## Getting Started
@@ -54,26 +52,40 @@ pip install -r requirements.txt
 
 ```
 
-3. __Configure environment variables__:
+3. -  __Configure environment variables__:
 Create a `.env` file in the root directory and add the following:
 
 ```
-SECRET_KEY=your_secret_key
+
 DATABASE_URL=sqlite:///./test.db
+
+```
+- __Install the core packages__
+```
+pip install eth-brownie
+
+npm -i -g ganache-cli
 
 ```
 
 4. __Run the application__:
 
 ```
-uvicorn main:app --reload
+# create the contracts
+
+brownie run ./script/deploy.py
+
+```
+
+```
+brownie run ./script/interact.py
 
 ```
 
 5.  __Run tests__:
 
 ```
-pytest test_security.py
+brownie test
 
 ```
 
